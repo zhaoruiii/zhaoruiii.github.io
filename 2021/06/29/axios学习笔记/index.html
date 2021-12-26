@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="查找入口文件
+index.js
+找到lib/axios.js为了避免迷糊，先放一段defaultConfig的伪代码
+12345678let defaultConfig = &amp;#123;      baseURL,      timeout: TIMEOUT_MILLISECONDS,      h" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>axios学习笔记 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="查找入口文件 index.js 找到lib&#x2F;axios.js为了避免迷糊，先放一段defaultConfig的伪代码 12345678let defaultConfig &#x3D; &amp;#123;      baseURL,      timeout: TIMEOUT_MILLISECONDS,      headers: &amp;#123;        &amp;#x27;Content-Type&amp;#x27;: &amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="axios学习笔记">
+<meta property="og:url" content="http://example.com/2021/06/29/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="查找入口文件 index.js 找到lib&#x2F;axios.js为了避免迷糊，先放一段defaultConfig的伪代码 12345678let defaultConfig &#x3D; &amp;#123;      baseURL,      timeout: TIMEOUT_MILLISECONDS,      headers: &amp;#123;        &amp;#x27;Content-Type&amp;#x27;: &amp;#">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/06/29/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/package.png">
+<meta property="og:image" content="http://example.com/2021/06/29/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/indexjs.png">
+<meta property="og:image" content="http://example.com/2021/06/29/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/bind.png">
+<meta property="og:image" content="http://example.com/2021/06/29/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/extend.png">
+<meta property="og:image" content="http://example.com/2021/06/29/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/response.png">
+<meta property="og:image" content="http://example.com/2021/06/29/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/cancel.png">
+<meta property="og:image" content="http://example.com/2021/06/29/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/cancelToken.png">
+<meta property="article:published_time" content="2021-06-29T08:38:00.000Z">
+<meta property="article:modified_time" content="2021-07-07T08:39:51.123Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/06/29/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/package.png">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="Hexo" rel="home">Hexo</a>
+      </h1>
+      
+        <h2 class="site-description hitokoto"></h2>
+        <script type="text/javascript" src="https://v1.hitokoto.cn/?encode=js"></script>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-axios学习笔记" class="post-axios学习笔记 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      axios学习笔记
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://example.com/2021/06/29/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="ckxmsj7lb0002ou0septf60tw" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <h1 id="查找入口文件"><a href="#查找入口文件" class="headerlink" title="查找入口文件"></a>查找入口文件</h1><p><img src="/2021/06/29/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/package.png"></p>
+<h1 id="index-js"><a href="#index-js" class="headerlink" title="index.js"></a>index.js</h1><p><img src="/2021/06/29/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/indexjs.png"></p>
+<h1 id="找到lib-axios-js"><a href="#找到lib-axios-js" class="headerlink" title="找到lib/axios.js"></a>找到lib/axios.js</h1><p>为了避免迷糊，先放一段defaultConfig的伪代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> defaultConfig = &#123;</span><br><span class="line">      baseURL,</span><br><span class="line">      timeout: TIMEOUT_MILLISECONDS,</span><br><span class="line">      headers: &#123;</span><br><span class="line">        <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      params: payLoadParams</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>进入文件倒数第二行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">module.exports = axios;</span><br></pre></td></tr></table></figure>
+<p>可知axios文件输出axios，axios = createInstance(defaults)，看下createInstance内部做了什么</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> createInstance(defaultConfig) &#123;</span><br><span class="line">  var context = new Axios(defaultConfig);</span><br><span class="line">  var instance = <span class="built_in">bind</span>(Axios.prototype.request, context);</span><br><span class="line">  utils.extend(instance, Axios.prototype, context);</span><br><span class="line">  utils.extend(instance, context);</span><br><span class="line">   <span class="built_in">return</span> instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解释一下上面的代码 ： </p>
+<p>第一行： var context = new Axios(defaultConfig),</p>
+<p>得到结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">context = &#123;</span><br><span class="line">  default:defaultConfig,</span><br><span class="line">  interceptors: &#123;</span><br><span class="line">    request :  new InterCeptorManager(),</span><br><span class="line">    responese : new InterCeptorManager(),</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>第二行： var instance = bind(Axios.prototype.request, context);<br>先看下bind方法<br><img src="/2021/06/29/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/bind.png"><br>bind方法返回一个wrap函数，并将wrap的参数传给外层函数fn,绑定上下文context<br>执行结果为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">instance = <span class="keyword">function</span> <span class="function"><span class="title">wrap</span></span>() &#123;</span><br><span class="line">  ... </span><br><span class="line">  <span class="built_in">return</span> Axios.prototype.request.apply(thisArg, args)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># 调用instance，返回Axios.prototype.request的执行结果，并将调用instance的参数作为axios.prototype.request执行的传参</span></span><br></pre></td></tr></table></figure>
+<p>第三行：utils.extend(instance, Axios.prototype, context);<br>看下extend方法<br><img src="/2021/06/29/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/extend.png"><br>代码逻辑为 ： 遍历Axios.prototype ，因为Axios.prototype上有方法request，getUri,delete,get,head,options,post,put,patch,直接执行if代码块，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">instance[<span class="string">&#x27;get&#x27;</span>] = <span class="built_in">bind</span>(Axios.prototype.get,context)</span><br><span class="line"><span class="comment"># instance.get(url,config)相当于 Axios.prototype.get(url,config)</span></span><br></pre></td></tr></table></figure>
+<p>第四行：<br>utils.extend(instance, context);<br>只有两个参数，说明是要instance 复制context的属性 ， 根据上面代码所得到的context可知，<br>会得到一下结果</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">instance.default = context.default;</span><br><span class="line">instance.interceptor = context.interceptor;</span><br></pre></td></tr></table></figure>
+<p>现在的instance 已经拥有了Axios.prototype和context的属性和方法，通过调用createInstance返回,赋值给axios。</p>
+<p>可以看到context是Axios的实例，Axios 是核心 </p>
+<h3 id="进入Axios-js"><a href="#进入Axios-js" class="headerlink" title="进入Axios.js"></a>进入Axios.js</h3><p> 看下Axios.prototype.request做了些什么<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (typeof config === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">   config = arguments[1] || &#123;&#125;;</span><br><span class="line">   config.url = arguments[0];</span><br><span class="line"> &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   config = config || &#123;&#125;;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment"># 这段代码是为了支持axios(url,config)</span></span><br><span class="line"></span><br><span class="line"> config = mergeConfig(this.defaults, config);</span><br><span class="line"> <span class="comment">#  参数中config是指调用比如axios.get(condig = &#123;&#125;)的参数</span></span><br><span class="line"></span><br><span class="line"> config.method = config.method ? config.method.toLowerCase() : <span class="string">&#x27;get&#x27;</span>;</span><br><span class="line"> <span class="comment"># 指定methods或默认get</span></span><br><span class="line"></span><br><span class="line"> <span class="comment"># ！！！这儿是重点，dispatchRequest会在接下来介绍</span></span><br><span class="line"> var chain = [dispatchRequest, undefined];</span><br><span class="line"> var promise = Promise.resolve(config); <span class="comment"># 可以使用promise.then</span></span><br><span class="line"> this.interceptors.request.forEach(<span class="keyword">function</span> unshiftRequestInterceptors(interceptor) &#123;</span><br><span class="line">   chain.unshift(interceptor.fulfilled, interceptor.rejected);</span><br><span class="line"> &#125;);</span><br><span class="line"> <span class="comment"># use和forEach的代码在下面， 遍历handlers，如果值存在，就执行unshiftRequestInterceptors，参数是我们使用this.interceptors.request.use传入的值， 在chain从开始处插入interceptor.fulfilled, interceptor.rejected</span></span><br><span class="line"></span><br><span class="line"> this.interceptors.response.forEach(<span class="keyword">function</span> pushResponseInterceptors(interceptor) &#123;</span><br><span class="line">   chain.push(interceptor.fulfilled, interceptor.rejected);</span><br><span class="line"> &#125;);</span><br><span class="line"> <span class="comment"># 同上，执行pushResponseInterceptors，在chain结尾处插入interceptor.fulfilled, interceptor.rejected，此时，chain = [interceptor.fulfilled(request), interceptor.rejected(request),dispatchRequest,undefined,interceptor.fulfilled, interceptor.rejected],</span></span><br><span class="line"> <span class="keyword">while</span> (chain.length) &#123;</span><br><span class="line">   promise = promise.then(chain.shift(), chain.shift());</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment"># 首先取出index = 0,1位置的request fulfilled和rejected执行，因为是promise是链式操作，所以第一个 chain.shift() 执行要返回config作为下一步传参，第二个 chain.shift是处理异常</span></span><br><span class="line"> </span><br><span class="line"> <span class="comment"># 定义Axios.prototype上的方法，可以通过axios[method](url,config)来调用</span></span><br><span class="line"> utils.forEach([<span class="string">&#x27;delete&#x27;</span>, <span class="string">&#x27;get&#x27;</span>, <span class="string">&#x27;head&#x27;</span>, <span class="string">&#x27;options&#x27;</span>], <span class="keyword">function</span> forEachMethodNoData(method) &#123;</span><br><span class="line">   Axios.prototype[method] = <span class="keyword">function</span>(url, config) &#123;</span><br><span class="line">     <span class="built_in">return</span> this.request(utils.merge(config || &#123;&#125;, &#123;</span><br><span class="line">       method: method,</span><br><span class="line">       url: url</span><br><span class="line">     &#125;));</span><br><span class="line">   &#125;;</span><br><span class="line"> &#125;);</span><br><span class="line"></span><br><span class="line"> utils.forEach([<span class="string">&#x27;post&#x27;</span>, <span class="string">&#x27;put&#x27;</span>, <span class="string">&#x27;patch&#x27;</span>], <span class="keyword">function</span> forEachMethodWithData(method) &#123;</span><br><span class="line">   Axios.prototype[method] = <span class="keyword">function</span>(url, data, config) &#123;</span><br><span class="line">     <span class="built_in">return</span> this.request(utils.merge(config || &#123;&#125;, &#123;</span><br><span class="line">       method: method,</span><br><span class="line">       url: url,</span><br><span class="line">       data: data</span><br><span class="line">     &#125;));</span><br><span class="line">   &#125;;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="跳出Axios-js"><a href="#跳出Axios-js" class="headerlink" title="跳出Axios.js"></a>跳出Axios.js</h3><h3 id="请求和返回的拦截都用到了new-InterceptorManager（），-接下来看下InterceptorManager-构造函数都做了什么"><a href="#请求和返回的拦截都用到了new-InterceptorManager（），-接下来看下InterceptorManager-构造函数都做了什么" class="headerlink" title="请求和返回的拦截都用到了new InterceptorManager（）， 接下来看下InterceptorManager 构造函数都做了什么"></a>请求和返回的拦截都用到了new InterceptorManager（）， 接下来看下InterceptorManager 构造函数都做了什么</h3><h4 id="lib-core-InterceptorManager-js-【"><a href="#lib-core-InterceptorManager-js-【" class="headerlink" title="lib/core/InterceptorManager.js 【"></a>lib/core/InterceptorManager.js 【</h4> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">function</span> <span class="function"><span class="title">InterceptorManager</span></span>() &#123;</span><br><span class="line">  this.handlers = [];</span><br><span class="line">  <span class="comment"># 定义一个数组用来存放数据</span></span><br><span class="line">  InterceptorManager.prototype.use = <span class="keyword">function</span> use(fulfilled, rejected) &#123;</span><br><span class="line">  this.handlers.push(&#123;</span><br><span class="line">    fulfilled: fulfilled,</span><br><span class="line">    rejected: rejected</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="built_in">return</span> this.handlers.length - 1;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment"># 我们在项目里的写法是instance.interceptors.request.use((config) =&gt; &#123; return config&#125;) ; instance.interceptors.response.use((response) =&gt; &#123; return response&#125;,err =&gt; &#123;...&#125;) ,fulfilled, rejected分别是成功回调，失败回调,use返回值为数组最后一项，即新添加进来的回调对象</span></span><br><span class="line">  InterceptorManager.prototype.forEach = <span class="keyword">function</span> forEach(fn) &#123;</span><br><span class="line">    utils.forEach(this.handlers, <span class="keyword">function</span> forEachHandler(h) &#123;</span><br><span class="line">      <span class="keyword">if</span> (h !== null) &#123;</span><br><span class="line">        fn(h);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="跳出InterceptorManager-js-】"><a href="#跳出InterceptorManager-js-】" class="headerlink" title="跳出InterceptorManager.js  】"></a>跳出InterceptorManager.js  】</h4><h4 id="dispatchRequest-【"><a href="#dispatchRequest-【" class="headerlink" title="dispatchRequest 【"></a>dispatchRequest 【</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">throwIfCancellationRequested(config);</span><br><span class="line"><span class="comment"># 如果设置了config.cancelToken，且有中断原因，抛出</span></span><br><span class="line"><span class="keyword">if</span> (config.baseURL &amp;&amp; !isAbsoluteURL(config.url)) &#123;</span><br><span class="line">  config.url = combineURLs(config.baseURL, config.url);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#  如果URL不是绝对路径，合并url</span></span><br><span class="line">config.headers = config.headers || &#123;&#125;;</span><br><span class="line">config.data = transformData(</span><br><span class="line">    config.data,</span><br><span class="line">    config.headers,</span><br><span class="line">    config.transformRequest</span><br><span class="line">  );</span><br><span class="line">config.headers = utils.merge(</span><br><span class="line">    config.headers.common || &#123;&#125;,</span><br><span class="line">    config.headers[config.method] || &#123;&#125;,</span><br><span class="line">    config.headers || &#123;&#125;</span><br><span class="line">  ); </span><br><span class="line">  <span class="comment"># 合并request config传入的headers.common和headers[&#x27;method&#x27;]，headers</span></span><br><span class="line">  utils.forEach(</span><br><span class="line">    [<span class="string">&#x27;delete&#x27;</span>, <span class="string">&#x27;get&#x27;</span>, <span class="string">&#x27;head&#x27;</span>, <span class="string">&#x27;post&#x27;</span>, <span class="string">&#x27;put&#x27;</span>, <span class="string">&#x27;patch&#x27;</span>, <span class="string">&#x27;common&#x27;</span>],</span><br><span class="line">    <span class="keyword">function</span> cleanHeaderConfig(method) &#123;</span><br><span class="line">      delete config.headers[method];</span><br><span class="line">    &#125;</span><br><span class="line">  );</span><br><span class="line">  <span class="comment"># 因为已经将 config.headers[method]的值合并到config.headers ,所以删除config.headers[method]，避免出现config.headers.get 依然存在的现象</span></span><br><span class="line"></span><br><span class="line"> var adapter = config.adapter || defaults.adapter; <span class="comment"># </span></span><br><span class="line"> <span class="comment"># adapter后面会介绍default.js文件会介绍</span></span><br><span class="line"> <span class="built_in">return</span> adapter(config).<span class="keyword">then</span>(response =&gt; &#123;</span><br><span class="line">  根据transformResponse对response.data 进行转换 </span><br><span class="line">  <span class="built_in">return</span> response </span><br><span class="line"> &#125;,err =&gt; &#123;</span><br><span class="line"></span><br><span class="line"> &#125;)</span><br><span class="line"><span class="comment">#  config是从interceptor.resolve() return出来的，adapter(config)会发送请求，定义response，通过return new Promise((resolve) =&gt; &#123;resolve(response)&#125;)</span></span><br><span class="line"><span class="comment">#  将response返回给后面的链接</span></span><br></pre></td></tr></table></figure>
+<h4 id="跳出dispatchRequest】"><a href="#跳出dispatchRequest】" class="headerlink" title="跳出dispatchRequest】"></a>跳出dispatchRequest】</h4><p>接着看axios.js中的代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var axios = createInstance(defaults);</span><br><span class="line">axios.Axios = Axios;</span><br><span class="line">axios.Cancel = require(<span class="string">&#x27;./cancel/Cancel&#x27;</span>);</span><br><span class="line">axios.CancelToken = require(<span class="string">&#x27;./cancel/CancelToken&#x27;</span>);</span><br><span class="line">axios.isCancel = require(<span class="string">&#x27;./cancel/isCancel&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p>defaults就是defaultConfig，defaults引自require(‘./defaults’) ，</p>
+<h3 id="进入axios-lib-defaults-js【"><a href="#进入axios-lib-defaults-js【" class="headerlink" title="进入axios/lib/defaults.js【"></a>进入axios/lib/defaults.js【</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">var DEFAULT_CONTENT_TYPE = &#123;</span><br><span class="line">  <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/x-www-form-urlencoded&#x27;</span></span><br><span class="line">&#125;;</span><br><span class="line">default = &#123;</span><br><span class="line">  <span class="comment"># 适配器。代码在下面</span></span><br><span class="line">  adapter : getDefaultAdapter(),</span><br><span class="line">  transformRequest:[f()], <span class="comment"># 这两个我还没看懂是怎么个用法</span></span><br><span class="line">  transformResponse:[f()],</span><br><span class="line">  timeout：0,</span><br><span class="line">  xsrfCookieName: <span class="string">&#x27;XSRF-TOKEN&#x27;</span>,</span><br><span class="line">  xsrfHeaderName: <span class="string">&#x27;X-XSRF-TOKEN&#x27;</span>,</span><br><span class="line">  maxContentLength: -1,</span><br><span class="line">  validateStatus: <span class="keyword">function</span> validateStatus(status) &#123;</span><br><span class="line">    <span class="built_in">return</span> status &gt;= 200 &amp;&amp; status &lt; 300;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment"># 响应状态</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">getDefaultAdapter</span></span>() &#123;</span><br><span class="line">  var adapter;</span><br><span class="line">  <span class="comment"># adapter适配器，根据nodejs 和浏览器环境，分别使用http 和xhr进行请求</span></span><br><span class="line">  <span class="keyword">if</span> (typeof process !== <span class="string">&#x27;undefined&#x27;</span> &amp;&amp; Object.prototype.toString.call(process) === <span class="string">&#x27;[object process]&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment"># For node use HTTP adapter</span></span><br><span class="line">    adapter = require(<span class="string">&#x27;./adapters/http&#x27;</span>);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (typeof XMLHttpRequest !== <span class="string">&#x27;undefined&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment"># For browsers use XHR adapter</span></span><br><span class="line">    adapter = require(<span class="string">&#x27;./adapters/xhr&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">return</span> adapter;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">defaults.headers = &#123;</span><br><span class="line">  common: &#123;</span><br><span class="line">    <span class="string">&#x27;Accept&#x27;</span>: <span class="string">&#x27;application/json, text/plain, */*&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">utils.forEach([<span class="string">&#x27;delete&#x27;</span>, <span class="string">&#x27;get&#x27;</span>, <span class="string">&#x27;head&#x27;</span>], <span class="keyword">function</span> forEachMethodNoData(method) &#123;</span><br><span class="line">  defaults.headers[method] = &#123;&#125;;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment"># &#x27;delete&#x27;, &#x27;get&#x27;, &#x27;head&#x27;为&#123;&#125;</span></span><br><span class="line"></span><br><span class="line">utils.forEach([<span class="string">&#x27;post&#x27;</span>, <span class="string">&#x27;put&#x27;</span>, <span class="string">&#x27;patch&#x27;</span>], <span class="keyword">function</span> forEachMethodWithData(method) &#123;</span><br><span class="line">  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment"># post , put,patch 默认请求头为&#123;&#x27;Content-Type&#x27;: &#x27;application/x-www-form-urlencoded&#x27;&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>着重看下adapter = require(‘./adapters/xhr’);</p>
+<h4 id="进入axios-lib-adapters-xhr-js【"><a href="#进入axios-lib-adapters-xhr-js【" class="headerlink" title="进入axios/lib/adapters/xhr.js【"></a>进入axios/lib/adapters/xhr.js【</h4><p>xhrAdapter 返回一个promise函数，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">var requestData = config.data;</span><br><span class="line"><span class="keyword">if</span> (utils.isFormData(requestData)) &#123;</span><br><span class="line">  delete requestHeaders[<span class="string">&#x27;Content-Type&#x27;</span>];</span><br><span class="line">  <span class="comment"># 如果是FormData格式，删除Content-Type，由浏览器赋值</span></span><br><span class="line">&#125;</span><br><span class="line">var request = new XMLHttpRequest();</span><br><span class="line"><span class="comment"># XMLHttpRequest在其他文章里可以查看，是浏览器内置构造函数</span></span><br><span class="line"><span class="comment"># open方法三个参数分别为：请求方法,url,是否异步</span></span><br><span class="line">request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), <span class="literal">true</span>);</span><br><span class="line">var responseHeaders = <span class="string">&#x27;getAllResponseHeaders&#x27;</span> <span class="keyword">in</span> request ? parseHeaders(request.getAllResponseHeaders()) : null;</span><br><span class="line">var responseData = !config.responseType || config.responseType === <span class="string">&#x27;text&#x27;</span> ? request.responseText : request.response;</span><br><span class="line">request.onreadystatechange = <span class="function"><span class="title">f</span></span>()&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="comment"># 定义了response</span></span><br><span class="line">  var response = &#123;</span><br><span class="line">    data: responseData,</span><br><span class="line">    status: request.status,</span><br><span class="line">    statusText: request.statusText,</span><br><span class="line">    headers: responseHeaders,</span><br><span class="line">    config: config,</span><br><span class="line">    request: request</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">settle(resolve, reject, response);</span><br><span class="line"><span class="comment"># 设置响应状态，是resolve(response) 还是抛出异常，settle代码在下面</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#处理请求并抛出异常，将request设为null</span></span><br><span class="line">request.onabort  = f()</span><br><span class="line">request.onerror  = f()</span><br><span class="line">request.ontimeout  = f() </span><br><span class="line"></span><br><span class="line"><span class="comment">#用户设置config.cancelToken，来中断请求</span></span><br><span class="line"><span class="keyword">if</span> (config.cancelToken) &#123;</span><br><span class="line">// Handle cancellation</span><br><span class="line">  config.cancelToken.promise.then(<span class="keyword">function</span> onCanceled(cancel) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!request) &#123;</span><br><span class="line">      <span class="built_in">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    request.abort();</span><br><span class="line">    reject(cancel);</span><br><span class="line">    // Clean up request</span><br><span class="line">    request = null;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#发送请求</span></span><br><span class="line">request.send(requestData); </span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">module.exports = <span class="keyword">function</span> settle(resolve, reject, response) &#123;</span><br><span class="line">  var validateStatus = response.config.validateStatus;</span><br><span class="line">  <span class="keyword">if</span> (!validateStatus || validateStatus(response.status)) &#123;</span><br><span class="line">    resolve(response);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    reject(createError(</span><br><span class="line">      <span class="string">&#x27;Request failed with status code &#x27;</span> + response.status,</span><br><span class="line">      response.config,</span><br><span class="line">      null,</span><br><span class="line">      response.request,</span><br><span class="line">      response</span><br><span class="line">    ));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><img src="/2021/06/29/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/response.png"><br>可以看到request.onreadystatechange 里面定义了response的内容，和接口返回的response是一样的构造,然后根据response.connfig.validateStatus(status &gt;= 200 &amp;&amp; status &lt; 300)设置响应状态是resolve(response) 还是报错</p>
+<h4 id="跳出xhr-js】"><a href="#跳出xhr-js】" class="headerlink" title="跳出xhr.js】"></a>跳出xhr.js】</h4><h3 id="跳出default-js】"><a href="#跳出default-js】" class="headerlink" title="跳出default.js】"></a>跳出default.js】</h3><p>接着看axios.js中的代码<br>在代码中，出现Cancel，CancelToken，isCancel，首先我们进入文件看下这三个到底是什么<br>cancel是一个相对简单的类，是用于抛出取消请求返回的信息<br><img src="/2021/06/29/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/cancel.png"><br>cancelToken是可用于请求取消操作的对象。<br><img src="/2021/06/29/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/cancelToken.png"><br>首先cancelToken的参数executor必须是一个函数，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var resolvePromise;</span><br><span class="line">this.promise = new Promise(<span class="keyword">function</span> promiseExecutor(resolve) &#123;</span><br><span class="line">  resolvePromise = resolve;</span><br><span class="line">&#125;);</span><br><span class="line">executor(<span class="keyword">function</span> cancel(message) &#123;</span><br><span class="line">    <span class="keyword">if</span> (token.reason) &#123;</span><br><span class="line">      // Cancellation has already been requested</span><br><span class="line">      <span class="built_in">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    token.reason = new Cancel(message); = &#123;message : <span class="string">&#x27;...&#x27;</span>&#125;</span><br><span class="line">    resolvePromise(token.reason);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p>使得resolve可以在外部被执行,resolvePromise().then，下面代码摘自xhr.js,<br>当config.cancelToken为true，通过 request.abort()终止请求，并且抛出终止信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (config.cancelToken) &#123;</span><br><span class="line">  // Handle cancellation</span><br><span class="line">  config.cancelToken.promise.then(<span class="keyword">function</span> onCanceled(cancel) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!request) &#123;</span><br><span class="line">      <span class="built_in">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    request.abort();</span><br><span class="line">    reject(cancel);</span><br><span class="line">    // Clean up request</span><br><span class="line">    request = null;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>config.cancelToken.promise.then()要求用户设置config.cancelToken 必须是CancelToken的实例，才能调用promise,所以</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> cancel </span><br><span class="line">config.cancelToken = new cancelToken(<span class="keyword">function</span> e(c) &#123;</span><br><span class="line">  cancel = c</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>在接口被第一次请求的时候，用cancel保存中止函数，当需要进行中止操作，比如重复请求，调用cancel</p>
+<p>一般我们应用的场景是当在接口还没返回，重复请求，取消之前请求，保留最后一个请求，如何做到判断一个接口还没请求完，开始了第二次请求</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2021/06/29/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+    <time datetime="2021-06-29T08:38:00.000Z" class="entry-date">
+        2021-06-29
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2021/07/07/%E6%B5%8F%E8%A7%88%E5%99%A8/" rel="prev"><span class="meta-nav">←</span> 浏览器</a></span>
+    
+    
+        <span class="nav-next"><a href="/2021/06/16/js%E6%96%B9%E6%B3%95/" rel="next">js方法 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2021/11/06/%E7%BC%96%E7%A8%8B%E9%A2%98/">编程题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/30/%E8%87%AA%E5%8A%A8%E5%8C%96%E7%94%9F%E6%88%90%E9%A1%B5%E9%9D%A2%E6%A8%A1%E6%9D%BF/">自动化生成页面模板</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/27/vue%E6%B7%BB%E5%8A%A0%E5%85%A8%E5%B1%80%E6%B0%B4%E5%8D%B0/">vue添加全局水印</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/08/Vue/">Vue</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/07/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/" rel="tag">UI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2021 John Doe
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>

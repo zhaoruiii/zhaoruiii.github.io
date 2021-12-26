@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="首先在utils目录下增加watermarkDom文件，文件内容如下,这里因为想达到类似企业微信的水印做了一下修改，增加了str2
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>vue添加全局水印 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="首先在utils目录下增加watermarkDom文件，文件内容如下,这里因为想达到类似企业微信的水印做了一下修改，增加了str2 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue添加全局水印">
+<meta property="og:url" content="http://example.com/2021/07/27/vue%E6%B7%BB%E5%8A%A0%E5%85%A8%E5%B1%80%E6%B0%B4%E5%8D%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="首先在utils目录下增加watermarkDom文件，文件内容如下,这里因为想达到类似企业微信的水印做了一下修改，增加了str2 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-07-27T02:27:53.000Z">
+<meta property="article:modified_time" content="2021-07-30T08:37:15.080Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="Hexo" rel="home">Hexo</a>
+      </h1>
+      
+        <h2 class="site-description hitokoto"></h2>
+        <script type="text/javascript" src="https://v1.hitokoto.cn/?encode=js"></script>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-vue添加全局水印" class="post-vue添加全局水印 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      vue添加全局水印
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://example.com/2021/07/27/vue%E6%B7%BB%E5%8A%A0%E5%85%A8%E5%B1%80%E6%B0%B4%E5%8D%B0/" data-id="ckxmsj7li000cou0s8dx0gval" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>首先在utils目录下增加watermarkDom文件，文件内容如下,这里因为想达到类似企业微信的水印做了一下修改，增加了str2</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;use strict&#x27;</span></span><br><span class="line">import store from <span class="string">&#x27;@/store&#x27;</span></span><br><span class="line">const watermark = &#123;</span><br><span class="line">    <span class="built_in">set</span>: <span class="keyword">function</span> (str, str2) &#123;</span><br><span class="line">        var canvas = document.createElement(<span class="string">&#x27;canvas&#x27;</span>)</span><br><span class="line">        canvas.width = 450;</span><br><span class="line">        canvas.height = 200;</span><br><span class="line">        // canvas.style.display = <span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">        var shuiyin = canvas.getContext(<span class="string">&#x27;2d&#x27;</span>);</span><br><span class="line">        // 控制文字的旋转角度和上下位置</span><br><span class="line">        // shuiyin.rotate(-15 * Math.PI / 180);</span><br><span class="line">        // shuiyin.translate(-50, 20)</span><br><span class="line">        //文字颜色</span><br><span class="line">        shuiyin.fillStyle = <span class="string">&quot;rgba(200, 200, 200, 0.2)&quot;</span>;</span><br><span class="line">        //文字样式</span><br><span class="line">        shuiyin.font = <span class="string">&quot;14px Vedana&quot;</span>;</span><br><span class="line">        shuiyin.fillText(str, 0, 50)</span><br><span class="line">        shuiyin.fillText(str2, 220, 150)</span><br><span class="line">        /* 新建一个用于填充canvas水印的标签，之所以没有直接在body上添加，</span><br><span class="line">           是因为z-index对个别内容影响，才考虑的不用body */</span><br><span class="line">        var watermark = document.createElement(<span class="string">&#x27;div&#x27;</span>)</span><br><span class="line">        const styleStr = `</span><br><span class="line">            position:fixed;</span><br><span class="line">            top:-20vh;</span><br><span class="line">            left:-50vw;</span><br><span class="line">            width:200vw;</span><br><span class="line">            height:200vh;</span><br><span class="line">            z-index:99999;</span><br><span class="line">            transform : rotate(-15deg);</span><br><span class="line">            pointer-events:none;</span><br><span class="line">            background-repeat:repeat;</span><br><span class="line">            mix-blend-mode: multiply;</span><br><span class="line">            background-image:url(<span class="string">&#x27;$&#123;canvas.toDataURL(&quot;image/png&quot;)&#125;&#x27;</span>)`;</span><br><span class="line">        watermark.setAttribute(<span class="string">&#x27;style&#x27;</span>, styleStr);</span><br><span class="line">        watermark.classList.add(<span class="string">&#x27;watermark&#x27;</span>)</span><br><span class="line">        document.body.appendChild(watermark)</span><br><span class="line"></span><br><span class="line">        //此方法是防止用户通过控制台修改样式去除水印效果</span><br><span class="line">        /* MutationObserver 是一个可以监听DOM结构变化的接口。 */</span><br><span class="line">        const observer = new MutationObserver(() =&gt; &#123;</span><br><span class="line">            const wmInstance = document.querySelector(<span class="string">&#x27;.watermark&#x27;</span>);</span><br><span class="line">            <span class="keyword">if</span> ((wmInstance &amp;&amp; wmInstance.getAttribute(<span class="string">&#x27;style&#x27;</span>) !== styleStr) || !wmInstance) &#123;</span><br><span class="line">                //如果标签在，只修改了属性，重新赋值属性</span><br><span class="line">                <span class="keyword">if</span> (wmInstance) &#123;</span><br><span class="line">                    // 避免一直触发</span><br><span class="line">                    // observer.disconnect();</span><br><span class="line">                    // console.log(<span class="string">&#x27;水印属性修改了&#x27;</span>);</span><br><span class="line">                    wmInstance.setAttribute(<span class="string">&#x27;style&#x27;</span>, styleStr);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    /* 此处根据用户登录状态，判断是否终止监听，避免用户退出后登录页面仍然有水印 */</span><br><span class="line">                    <span class="keyword">if</span> (store.state.user.token) &#123;</span><br><span class="line">                        //标签被移除，重新添加标签</span><br><span class="line">                        console.log(<span class="string">&#x27;水印标签被移除了&#x27;</span>);</span><br><span class="line">                        document.body.appendChild(watermark)</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        observer.disconnect();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">        observer.observe(document.body, &#123;</span><br><span class="line">            attributes: <span class="literal">true</span>,</span><br><span class="line">            subtree: <span class="literal">true</span>,</span><br><span class="line">            childList: <span class="literal">true</span>,</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    close: <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">        /* 关闭页面的水印，即要移除水印标签 */</span><br><span class="line">        <span class="built_in">let</span> watermark = document.querySelector(<span class="string">&#x27;.watermark&#x27;</span>)</span><br><span class="line">        document.body.removeChild(watermark)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">export</span> default watermark</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在获取用户信息接口中，调用watermark.set()，接口调用完之后，页面会出现水印</p>
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2021/07/27/vue%E6%B7%BB%E5%8A%A0%E5%85%A8%E5%B1%80%E6%B0%B4%E5%8D%B0/">
+    <time datetime="2021-07-27T02:27:53.000Z" class="entry-date">
+        2021-07-27
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+        <span class="nav-previous"><a href="/2021/07/30/%E8%87%AA%E5%8A%A8%E5%8C%96%E7%94%9F%E6%88%90%E9%A1%B5%E9%9D%A2%E6%A8%A1%E6%9D%BF/" rel="prev"><span class="meta-nav">←</span> 自动化生成页面模板</a></span>
+    
+    
+        <span class="nav-next"><a href="/2021/07/08/Vue/" rel="next">Vue <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2021/11/06/%E7%BC%96%E7%A8%8B%E9%A2%98/">编程题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/30/%E8%87%AA%E5%8A%A8%E5%8C%96%E7%94%9F%E6%88%90%E9%A1%B5%E9%9D%A2%E6%A8%A1%E6%9D%BF/">自动化生成页面模板</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/27/vue%E6%B7%BB%E5%8A%A0%E5%85%A8%E5%B1%80%E6%B0%B4%E5%8D%B0/">vue添加全局水印</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/08/Vue/">Vue</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/07/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI/" rel="tag">UI</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/UI/" style="font-size: 10px;">UI</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2021 John Doe
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
