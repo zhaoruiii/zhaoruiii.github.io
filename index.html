@@ -64,6 +64,109 @@
       <div id="main" class="wrapper">
         <div id="primary" class="site-content"><div id="content" role="main">
   
+    <article id="post-uniapp遇到的问题" class="post-uniapp遇到的问题 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2022/02/25/uniapp%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">uniapp遇到的问题</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://example.com/2022/02/25/uniapp%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" data-id="cl06j26yt0004ac071p0r5acs" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>1.在项目中使用上拉加载的时候，使用了mescroll-uni插件<br>页面的使用逻辑是<br>首先把包下载到本地，在main.js中引入，然后通过Vue.component 进行引入通过up回调函数处理逻辑<br>问题： 因为我本地数据量比较少，所以设置了size = 3，结果因为mescroll默认条数是10条，然后有个方法endBySize需要传两个参数，<br>本页数据条数和总数据量，里面的逻辑是用（page-1）*pageSize + 本页数据返回条数 &lt; total 来盘点是否还有下一页<br>比如我本地需要20条一页，一共有12条数据，本来只应该显示第一页，但是因为pageSize的原因，判断还有下一页，但接口获取第二页已经没有数据了。造成显示错误</p>
+<p>解决方法 ： 当pageSize不是10的时候，需要手动修改一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.mescroll &amp;&amp; this.mescroll.setPageSize(pageSize);</span><br></pre></td></tr></table></figure>
+<p>2.键盘弹起问题</p>
+<p>问题：popup中选中其他，出现输入框，然后按钮被顶到屏幕底部屏幕外点输入框，弹起键盘，将popup的一部分内容顶出屏幕外</p>
+<p>解决问题 ： 计算popup的高度，然后设置maxHeight，可以解决按钮的问题，使用onKeyboardHeightChange计算软键盘的高度， (uni.getSystemInfoSync().windowHeight - res.height) * 0.8 重新计算maxHeight的值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> oRecordTask = uni</span><br><span class="line">    .createSelectorQuery()</span><br><span class="line">    .<span class="keyword">in</span>(this)</span><br><span class="line">    .select(<span class="string">&quot;.scroll-view&quot;</span>);</span><br><span class="line">uni.onKeyboardHeightChange((res) =&gt; &#123;</span><br><span class="line">    oRecordTask</span><br><span class="line">        .boundingClientRect((data) =&gt; &#123;</span><br><span class="line">        this.height =</span><br><span class="line">            (uni.getSystemInfoSync().windowHeight - res.height) * 0.8;</span><br><span class="line">        this.scrollViewTop = res.height</span><br><span class="line">        &#125;)</span><br><span class="line">        .<span class="built_in">exec</span>();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2022/02/25/uniapp%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
+    <time datetime="2022-02-25T08:15:05.000Z" class="entry-date">
+        2022-02-25
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
+    <article id="uniapp-遇到的问题" class="uniapp-遇到的问题 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title">
+      <a class="article-title" href="/2022/02/25/%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">遇到的问题</a>
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://example.com/2022/02/25/%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" data-id="cl06j26z1000oac078xaqd35f" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2022/02/25/%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
+    <time datetime="2022-02-25T08:14:28.000Z" class="entry-date">
+        2022-02-25
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+
+
+
+
+  
     <article id="post-编程题" class="post-编程题 post type-post status-publish format-standard hentry">
     <!---->
 
@@ -79,7 +182,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://example.com/2021/11/06/%E7%BC%96%E7%A8%8B%E9%A2%98/" data-id="cl023jlke000lh107aocid8od" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://example.com/2021/11/06/%E7%BC%96%E7%A8%8B%E9%A2%98/" data-id="cl06j26yz000lac0783x0fqel" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -163,61 +266,6 @@
 
 
   
-    <article id="post-总结" class="post-总结 post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2021/10/11/%E6%80%BB%E7%BB%93/">总结</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://example.com/2021/10/11/%E6%80%BB%E7%BB%93/" data-id="cl023jlkd000hh107carwgglw" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <p>1.实现千分位</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> str = <span class="string">&#x27;12333&#x27;</span></span><br><span class="line">String(str).split(<span class="string">&#x27;&#x27;</span>).reverse().reduce((prev,next,index) =&gt; &#123;(index%3 ? next:next+<span class="string">&#x27;,&#x27;</span>)+prev&#125;&#125;)</span><br><span class="line">(Number(str)).toLocaleString()</span><br></pre></td></tr></table></figure>
-<p>2.数组扁平化并去重，从小到大排列</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">flatten(arr) &#123;</span><br><span class="line">     // 编写一个程序将数组扁平化去并除其中重复部分数据，最终得到一个升序且不重复的数组</span><br><span class="line">     arr.forEach((item, index) =&gt; &#123;</span><br><span class="line">       <span class="keyword">if</span> (Array.isArray(item)) &#123;</span><br><span class="line">         this.flatten(item);</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         this.newArr.push(item);</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;);</span><br><span class="line">     <span class="built_in">return</span> Array.from(new Set(this.newArr)).sort((a, b) =&gt; a - b);</span><br><span class="line">   &#125;,</span><br></pre></td></tr></table></figure>
-<p>3.给定一个数组，计算他们的交集</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">intersection(arr1, arr2) &#123;</span><br><span class="line">     <span class="built_in">return</span> arr1.filter((item) =&gt; arr2.includes(item));</span><br><span class="line">   &#125;,</span><br></pre></td></tr></table></figure>
-<p>4.随机生成一个长度为 10 的整数类型的数组，例如 [2, 10, 3, 4, 5, 11, 10, 11, 20]，将其排列成一个新数组，要求新数组形式如下，例如 [[2, 3, 4, 5], [10, 11], [20]]。<br>5.如何把一个字符串的大小写取反（大写变小写小写变大写），例如 ’AbC’ 变成 ‘aBc’</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> str = <span class="string">&#x27;AAAbbb&#x27;</span></span><br><span class="line"><span class="built_in">let</span> news = str.replace(/[a-zA-Z]/g,content =&gt; &#123;</span><br><span class="line">    <span class="built_in">return</span> /[a-z]/.<span class="built_in">test</span>(content) ? content.toUpperCase() : content.toLowerCase() </span><br><span class="line">&#125;)</span><br><span class="line">console.log(news)</span><br></pre></td></tr></table></figure>
-
-
-<p>6.手写一个iterator<br>7.手写promise.all和promise.race</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">Promise.all = <span class="keyword">function</span>(iterator) &#123;</span><br><span class="line">   <span class="built_in">let</span> count = 0;</span><br><span class="line">   <span class="built_in">let</span> length = iterator.length;</span><br><span class="line">   <span class="built_in">let</span> res = [];</span><br><span class="line">   <span class="built_in">let</span> err = []</span><br><span class="line">   <span class="built_in">return</span> new Promise((resolve,reject) =&gt; &#123;</span><br><span class="line">       <span class="keyword">for</span>(<span class="built_in">let</span> i <span class="keyword">in</span> iterator) &#123;</span><br><span class="line">           Promise.resolve(iterator[i])</span><br><span class="line">           .<span class="keyword">then</span>(data =&gt; &#123;</span><br><span class="line">            // 如果是all,需要等到所有的执行完且全部为resolve状态，++count == length来判断</span><br><span class="line">              res[i] = data;</span><br><span class="line">              <span class="keyword">if</span>(++count == length) &#123;</span><br><span class="line">                  resolve(res)</span><br><span class="line">              &#125;</span><br><span class="line">            //  如果是race，直接执行resolve（res[i] ）</span><br><span class="line">            </span><br><span class="line">           &#125;)</span><br><span class="line">           .catch(e =&gt; &#123;</span><br><span class="line">             // 这边如果想要获取 </span><br><span class="line">               err[i] = e;</span><br><span class="line">               reject(e)</span><br><span class="line">           &#125;)</span><br><span class="line">           </span><br><span class="line">       &#125;</span><br><span class="line">   &#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">let</span> a = Promise.resolve(3);</span><br><span class="line"><span class="built_in">let</span> b = new Promise((resolve,reject) =&gt; &#123;</span><br><span class="line">    setTimeout(resolve,100,<span class="string">&#x27;foo&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">let</span> c = 33</span><br><span class="line"><span class="built_in">let</span> d = Promise.reject(<span class="string">&#x27;报错了&#x27;</span>)</span><br><span class="line">Promise.all([a,b,c,d]).<span class="keyword">then</span>(value =&gt; &#123;</span><br><span class="line">    console.log(value,<span class="string">&#x27;value&#x27;</span>)</span><br><span class="line">&#125;).catch(e =&gt; &#123;</span><br><span class="line">    console.log(e)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2021/10/11/%E6%80%BB%E7%BB%93/">
-    <time datetime="2021-10-11T12:32:51.000Z" class="entry-date">
-        2021-10-11
-    </time>
-</a>
-    
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
     <article id="post-webpack" class="post-webpack post type-post status-publish format-standard hentry">
     <!---->
 
@@ -233,7 +281,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://example.com/2021/09/17/webpack/" data-id="cl023jlkd000eh107b7v2hy82" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://example.com/2021/09/17/webpack/" data-id="cl06j26yy000fac078uzjdajn" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -277,7 +325,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://example.com/2021/09/07/vue-observer/" data-id="cl023jlk90008h107aqpg0lp2" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://example.com/2021/09/07/vue-observer/" data-id="cl06j26yv0009ac073vd54yku" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -325,7 +373,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://example.com/2021/09/07/vue-state/" data-id="cl023jlka0009h107duodhmd8" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://example.com/2021/09/07/vue-state/" data-id="cl06j26yv000aac0728qihd88" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -370,7 +418,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://example.com/2021/09/05/vue-dep/" data-id="cl023jlk80004h1076xycciom" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://example.com/2021/09/05/vue-dep/" data-id="cl06j26yu0005ac079fx792jl" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -415,7 +463,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://example.com/2021/09/03/watcher%E7%9A%84%E5%AE%9E%E7%8E%B0/" data-id="cl023jlkc000dh1079nhkarbk" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://example.com/2021/09/03/watcher%E7%9A%84%E5%AE%9E%E7%8E%B0/" data-id="cl06j26yy000eac0744nbhefq" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -459,7 +507,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://example.com/2021/09/03/vue-globalApi/" data-id="cl023jlk80005h107ch7naqzm" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://example.com/2021/09/03/vue-globalApi/" data-id="cl06j26yu0006ac079f8r3ine" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -502,7 +550,7 @@
         
         <div class="comments-link">
             
-            <a href="javascript:void(0);" data-url="http://example.com/2021/09/03/vue-init/" data-id="cl023jlk90006h107fa6cdr7x" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+            <a href="javascript:void(0);" data-url="http://example.com/2021/09/03/vue-init/" data-id="cl06j26yu0007ac0740ed3rdo" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
         </div><!-- .comments-link -->
       </header><!-- .entry-header -->
 
@@ -540,53 +588,10 @@
 
 
   
-    <article id="post-vue-lifeCycle" class="post-vue-lifeCycle post type-post status-publish format-standard hentry">
-    <!---->
-
-      <header class="entry-header">
-        
-        
-  
-    <h1 class="entry-title">
-      <a class="article-title" href="/2021/09/03/vue-lifeCycle/">vue-lifeCycle</a>
-    </h1>
-  
-
-        
-        <div class="comments-link">
-            
-            <a href="javascript:void(0);" data-url="http://example.com/2021/09/03/vue-lifeCycle/" data-id="cl023jlk90007h1078lq46bzq" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
-        </div><!-- .comments-link -->
-      </header><!-- .entry-header -->
-
-    <div class="entry-content">
-      
-        <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br></pre></td><td class="code"><pre><span class="line">设置当前实例</span><br><span class="line"><span class="built_in">export</span> <span class="keyword">function</span> setActiveInstance(vm: Component) &#123;</span><br><span class="line">  const prevActiveInstance = activeInstance</span><br><span class="line">  activeInstance = vm</span><br><span class="line">  <span class="built_in">return</span> () =&gt; &#123;</span><br><span class="line">    activeInstance = prevActiveInstance</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">export</span> <span class="keyword">function</span> initLifecycle (vm: Component) &#123;</span><br><span class="line">  <span class="comment"># 初始化了一系列的值</span></span><br><span class="line">  const options = vm.<span class="variable">$options</span></span><br><span class="line"></span><br><span class="line">  // locate first non-abstract parent</span><br><span class="line">  <span class="built_in">let</span> parent = options.parent</span><br><span class="line">  <span class="keyword">if</span> (parent &amp;&amp; !options.abstract) &#123;</span><br><span class="line">    <span class="keyword">while</span> (parent.<span class="variable">$options</span>.abstract &amp;&amp; parent.<span class="variable">$parent</span>) &#123;</span><br><span class="line">      parent = parent.<span class="variable">$parent</span></span><br><span class="line">    &#125;</span><br><span class="line">    parent.<span class="variable">$children</span>.push(vm)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  vm.<span class="variable">$parent</span> = parent</span><br><span class="line">  vm.<span class="variable">$root</span> = parent ? parent.<span class="variable">$root</span> : vm</span><br><span class="line"></span><br><span class="line">  vm.<span class="variable">$children</span> = []</span><br><span class="line">  vm.<span class="variable">$refs</span> = &#123;&#125;</span><br><span class="line"></span><br><span class="line">  vm._watcher = null</span><br><span class="line">  vm._inactive = null</span><br><span class="line">  vm._directInactive = <span class="literal">false</span></span><br><span class="line">  vm._isMounted = <span class="literal">false</span></span><br><span class="line">  vm._isDestroyed = <span class="literal">false</span></span><br><span class="line">  vm._isBeingDestroyed = <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># _update将虚拟dom渲染成实际dom</span></span><br><span class="line">Vue.prototype._update = <span class="keyword">function</span> (vnode: VNode, hydrating?: boolean) &#123;</span><br><span class="line">    const vm: Component = this</span><br><span class="line">    const prevEl = vm.<span class="variable">$el</span></span><br><span class="line">    const prevVnode = vm._vnode</span><br><span class="line">    const restoreActiveInstance = setActiveInstance(vm)</span><br><span class="line">    vm._vnode = vnode</span><br><span class="line">    // Vue.prototype.__patch__ is injected <span class="keyword">in</span> entry points</span><br><span class="line">    // based on the rendering backend used.</span><br><span class="line">    <span class="keyword">if</span> (!prevVnode) &#123;</span><br><span class="line">      // initial render</span><br><span class="line">      vm.<span class="variable">$el</span> = vm.__patch__(vm.<span class="variable">$el</span>, vnode, hydrating, <span class="literal">false</span> /* removeOnly */)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      // updates</span><br><span class="line">      vm.<span class="variable">$el</span> = vm.__patch__(prevVnode, vnode)</span><br><span class="line">    &#125;</span><br><span class="line">    restoreActiveInstance()</span><br><span class="line">    // update __vue__ reference</span><br><span class="line">    <span class="keyword">if</span> (prevEl) &#123;</span><br><span class="line">      prevEl.__vue__ = null</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (vm.<span class="variable">$el</span>) &#123;</span><br><span class="line">      vm.<span class="variable">$el</span>.__vue__ = vm</span><br><span class="line">    &#125;</span><br><span class="line">    // <span class="keyword">if</span> parent is an HOC, update its <span class="variable">$el</span> as well</span><br><span class="line">    <span class="keyword">if</span> (vm.<span class="variable">$vnode</span> &amp;&amp; vm.<span class="variable">$parent</span> &amp;&amp; vm.<span class="variable">$vnode</span> === vm.<span class="variable">$parent</span>._vnode) &#123;</span><br><span class="line">      vm.<span class="variable">$parent</span>.<span class="variable">$el</span> = vm.<span class="variable">$el</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Vue.prototype.<span class="variable">$forceUpdate</span> = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    const vm: Component = this</span><br><span class="line">    <span class="keyword">if</span> (vm._watcher) &#123;</span><br><span class="line">      vm._watcher.update()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  Vue.prototype.<span class="variable">$destroy</span> = <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    const vm: Component = this</span><br><span class="line">    <span class="keyword">if</span> (vm._isBeingDestroyed) &#123;</span><br><span class="line">      <span class="built_in">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"># 声明钩子函数</span></span><br><span class="line">    callHook(vm, <span class="string">&#x27;beforeDestroy&#x27;</span>)</span><br><span class="line">    vm._isBeingDestroyed = <span class="literal">true</span></span><br><span class="line">    // remove self from parent</span><br><span class="line">    const parent = vm.<span class="variable">$parent</span></span><br><span class="line">    <span class="comment"># 如果有父级，在父级中移除当前子级</span></span><br><span class="line">    <span class="keyword">if</span> (parent &amp;&amp; !parent._isBeingDestroyed &amp;&amp; !vm.<span class="variable">$options</span>.abstract) &#123;</span><br><span class="line">      remove(parent.<span class="variable">$children</span>, vm)</span><br><span class="line">    &#125;</span><br><span class="line">    // teardown watchers</span><br><span class="line">    <span class="keyword">if</span> (vm._watcher) &#123;</span><br><span class="line">      vm._watcher.teardown()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">let</span> i = vm._watchers.length</span><br><span class="line">    <span class="keyword">while</span> (i--) &#123;</span><br><span class="line">      vm._watchers[i].teardown()</span><br><span class="line">    &#125;</span><br><span class="line">    // remove reference from data ob</span><br><span class="line">    // frozen object may not have observer.</span><br><span class="line">    <span class="keyword">if</span> (vm._data.__ob__) &#123;</span><br><span class="line">      vm._data.__ob__.vmCount--</span><br><span class="line">    &#125;</span><br><span class="line">    // call the last hook...</span><br><span class="line">    vm._isDestroyed = <span class="literal">true</span></span><br><span class="line">    // invoke destroy hooks on current rendered tree</span><br><span class="line">    vm.__patch__(vm._vnode, null)</span><br><span class="line">    // fire destroyed hook</span><br><span class="line">    callHook(vm, <span class="string">&#x27;destroyed&#x27;</span>)</span><br><span class="line">    // turn off all instance listeners.</span><br><span class="line">    vm.<span class="variable">$off</span>()</span><br><span class="line">    // remove __vue__ reference</span><br><span class="line">    <span class="keyword">if</span> (vm.<span class="variable">$el</span>) &#123;</span><br><span class="line">      vm.<span class="variable">$el</span>.__vue__ = null</span><br><span class="line">    &#125;</span><br><span class="line">    // release circular reference (<span class="comment">#6759)</span></span><br><span class="line">    <span class="keyword">if</span> (vm.<span class="variable">$vnode</span>) &#123;</span><br><span class="line">      vm.<span class="variable">$vnode</span>.parent = null</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">export</span> <span class="keyword">function</span> mountComponent (</span><br><span class="line">  vm: Component,</span><br><span class="line">  el: ?Element,</span><br><span class="line">  hydrating?: boolean</span><br><span class="line">): Component &#123;</span><br><span class="line">  vm.<span class="variable">$el</span> = el</span><br><span class="line">  <span class="keyword">if</span> (!vm.<span class="variable">$options</span>.render) &#123;</span><br><span class="line">    vm.<span class="variable">$options</span>.render = createEmptyVNode</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment"># 这时候还没有进行挂载 </span></span><br><span class="line">callHook(vm, <span class="string">&#x27;beforeMount&#x27;</span>)</span><br><span class="line">  <span class="built_in">let</span> updateComponent</span><br><span class="line">  /* istanbul ignore <span class="keyword">if</span> */</span><br><span class="line">  <span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">&#x27;production&#x27;</span> &amp;&amp; config.performance &amp;&amp; mark) &#123;</span><br><span class="line">    updateComponent = () =&gt; &#123;</span><br><span class="line">      const name = vm._name</span><br><span class="line">      const id = vm._uid</span><br><span class="line">      const startTag = `vue-perf-start:<span class="variable">$&#123;id&#125;</span>`</span><br><span class="line">      const endTag = `vue-perf-end:<span class="variable">$&#123;id&#125;</span>`</span><br><span class="line"></span><br><span class="line">      mark(startTag)</span><br><span class="line">      const vnode = vm._render() // 生成虚拟dom</span><br><span class="line">      mark(endTag)</span><br><span class="line">      measure(`vue <span class="variable">$&#123;name&#125;</span> render`, startTag, endTag)</span><br><span class="line"></span><br><span class="line">      mark(startTag)</span><br><span class="line">      vm._update(vnode, hydrating) // 传入虚拟dom,渲染成真正的dom</span><br><span class="line">      mark(endTag)</span><br><span class="line">      measure(`vue <span class="variable">$&#123;name&#125;</span> patch`, startTag, endTag)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    updateComponent = () =&gt; &#123;</span><br><span class="line">      vm._update(vm._render(), hydrating)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment"># 终于在这看到了 new Watcher的入口，updateComponent是一个函数，_update生成了实际的dom,现在我们到watcher里看看对updateComponent的操作</span></span><br><span class="line"></span><br><span class="line">  new Watcher(vm, updateComponent, noop, &#123;</span><br><span class="line">    <span class="function"><span class="title">before</span></span> () &#123;</span><br><span class="line">      <span class="keyword">if</span> (vm._isMounted &amp;&amp; !vm._isDestroyed) &#123;</span><br><span class="line">        callHook(vm, <span class="string">&#x27;beforeUpdate&#x27;</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, <span class="literal">true</span> /* isRenderWatcher */)</span><br><span class="line">  hydrating = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">if</span> (vm.<span class="variable">$vnode</span> == null) &#123;</span><br><span class="line">    vm._isMounted = <span class="literal">true</span></span><br><span class="line">    callHook(vm, <span class="string">&#x27;mounted&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">return</span> vm</span><br><span class="line">&#125;</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
-
-      
-    </div><!-- .entry-content -->
-
-    <footer class="entry-meta">
-    <a href="/2021/09/03/vue-lifeCycle/">
-    <time datetime="2021-09-03T09:00:57.000Z" class="entry-date">
-        2021-09-03
-    </time>
-</a>
-    
-    
-    </footer>
-</article>
-
-
-
-
-
-
-  
   
     <nav id="pagination">
       <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
       </nav>
     </nav>
   
@@ -612,11 +617,15 @@
       <ul>
         
           <li>
-            <a href="/2021/11/06/%E7%BC%96%E7%A8%8B%E9%A2%98/">编程题</a>
+            <a href="/2022/02/25/uniapp%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">uniapp遇到的问题</a>
           </li>
         
           <li>
-            <a href="/2021/10/11/%E6%80%BB%E7%BB%93/">总结</a>
+            <a href="/2022/02/25/%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">遇到的问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/06/%E7%BC%96%E7%A8%8B%E9%A2%98/">编程题</a>
           </li>
         
           <li>
@@ -625,10 +634,6 @@
         
           <li>
             <a href="/2021/09/07/vue-observer/">vue-observer</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/07/vue-state/">vue-state</a>
           </li>
         
       </ul>

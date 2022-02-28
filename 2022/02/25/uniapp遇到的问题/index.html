@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <meta name="description" content="1.在项目中使用上拉加载的时候，使用了mescroll-uni插件页面的使用逻辑是首先把包下载到本地，在main.js中引入，然后通过Vue.component 进行引入通过up回调函数处理逻辑问题： 因为我本地数据量比较少，所以设置了size = 3，结果因为mescroll默认条数是10条，然后" />
+  
+
+  
+  
+  
+  
+  
+  
+  <title>uniapp遇到的问题 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.在项目中使用上拉加载的时候，使用了mescroll-uni插件页面的使用逻辑是首先把包下载到本地，在main.js中引入，然后通过Vue.component 进行引入通过up回调函数处理逻辑问题： 因为我本地数据量比较少，所以设置了size &#x3D; 3，结果因为mescroll默认条数是10条，然后有个方法endBySize需要传两个参数，本页数据条数和总数据量，里面的逻辑是用（page-1）*p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="uniapp遇到的问题">
+<meta property="og:url" content="http://example.com/2022/02/25/uniapp%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.在项目中使用上拉加载的时候，使用了mescroll-uni插件页面的使用逻辑是首先把包下载到本地，在main.js中引入，然后通过Vue.component 进行引入通过up回调函数处理逻辑问题： 因为我本地数据量比较少，所以设置了size &#x3D; 3，结果因为mescroll默认条数是10条，然后有个方法endBySize需要传两个参数，本页数据条数和总数据量，里面的逻辑是用（page-1）*p">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-02-25T08:15:05.000Z">
+<meta property="article:modified_time" content="2022-02-28T09:51:56.628Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/css/images/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  
+  <!-- baidu webmaster push -->
+  <script src='//push.zhanzhang.baidu.com/push.js'></script>
+<meta name="generator" content="Hexo 5.4.1"></head>
+<body class="home blog custom-background custom-font-enabled single-author">
+  <div id="page" class="hfeed site">
+      <header id="masthead" class="site-header" role="banner">
+    <hgroup>
+      <h1 class="site-title">
+        <a href="/" title="Hexo" rel="home">Hexo</a>
+      </h1>
+      
+        <h2 class="site-description hitokoto"></h2>
+        <script type="text/javascript" src="https://v1.hitokoto.cn/?encode=js"></script>
+      
+    </hgroup>
+
+    <nav id="site-navigation" class="main-navigation" role="navigation">
+            <button class="menu-toggle">菜单</button>
+            <a class="assistive-text" href="/#content" title="跳至内容">跳至内容</a><!--TODO-->
+            <div class="menu-main-container">
+                <ul id="menu-main" class="nav-menu">
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/">Home</a></li>
+                
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="/archives">Archives</a></li>
+                
+                </ul>
+            </div>
+    </nav>
+</header>
+
+      <div id="main" class="wrapper">
+        <div id="primary" class="site-content"><div id="content" role="main"><article id="post-uniapp遇到的问题" class="post-uniapp遇到的问题 post type-post status-publish format-standard hentry">
+    <!---->
+
+      <header class="entry-header">
+        
+        
+  
+    <h1 class="entry-title article-title">
+      uniapp遇到的问题
+    </h1>
+  
+
+        
+        <div class="comments-link">
+            
+            <a href="javascript:void(0);" data-url="http://example.com/2022/02/25/uniapp%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" data-id="cl06j26yt0004ac071p0r5acs" class="leave-reply bdsharebuttonbox" data-cmd="more">Share</a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <div class="entry-content">
+      
+        <p>1.在项目中使用上拉加载的时候，使用了mescroll-uni插件<br>页面的使用逻辑是<br>首先把包下载到本地，在main.js中引入，然后通过Vue.component 进行引入通过up回调函数处理逻辑<br>问题： 因为我本地数据量比较少，所以设置了size = 3，结果因为mescroll默认条数是10条，然后有个方法endBySize需要传两个参数，<br>本页数据条数和总数据量，里面的逻辑是用（page-1）*pageSize + 本页数据返回条数 &lt; total 来盘点是否还有下一页<br>比如我本地需要20条一页，一共有12条数据，本来只应该显示第一页，但是因为pageSize的原因，判断还有下一页，但接口获取第二页已经没有数据了。造成显示错误</p>
+<p>解决方法 ： 当pageSize不是10的时候，需要手动修改一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.mescroll &amp;&amp; this.mescroll.setPageSize(pageSize);</span><br></pre></td></tr></table></figure>
+<p>2.键盘弹起问题</p>
+<p>问题：popup中选中其他，出现输入框，然后按钮被顶到屏幕底部屏幕外点输入框，弹起键盘，将popup的一部分内容顶出屏幕外</p>
+<p>解决问题 ： 计算popup的高度，然后设置maxHeight，可以解决按钮的问题，使用onKeyboardHeightChange计算软键盘的高度， (uni.getSystemInfoSync().windowHeight - res.height) * 0.8 重新计算maxHeight的值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> oRecordTask = uni</span><br><span class="line">    .createSelectorQuery()</span><br><span class="line">    .<span class="keyword">in</span>(this)</span><br><span class="line">    .select(<span class="string">&quot;.scroll-view&quot;</span>);</span><br><span class="line">uni.onKeyboardHeightChange((res) =&gt; &#123;</span><br><span class="line">    oRecordTask</span><br><span class="line">        .boundingClientRect((data) =&gt; &#123;</span><br><span class="line">        this.height =</span><br><span class="line">            (uni.getSystemInfoSync().windowHeight - res.height) * 0.8;</span><br><span class="line">        this.scrollViewTop = res.height</span><br><span class="line">        &#125;)</span><br><span class="line">        .<span class="built_in">exec</span>();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+    <a href="/2022/02/25/uniapp%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">
+    <time datetime="2022-02-25T08:15:05.000Z" class="entry-date">
+        2022-02-25
+    </time>
+</a>
+    
+    
+    </footer>
+</article>
+
+
+    
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    
+    
+        <span class="nav-next"><a href="/2022/02/25/%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" rel="next">遇到的问题 <span class="meta-nav">→</span></a></span>
+    
+</nav><!-- .nav-single -->
+
+
+
+
+
+
+
+</div></div>
+        <div id="secondary" class="widget-area" role="complementary">
+  
+    <aside id="search" class="widget widget_search"><form role="search" method="get" accept-charset="utf-8" id="searchform" class="searchform" action="//google.com/search">
+    <div>
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="搜索" />
+    </div>
+</form></aside>
+  
+    
+  
+    
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget-content">
+      <ul>
+        
+          <li>
+            <a href="/2022/02/25/uniapp%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">uniapp遇到的问题</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/25/%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">遇到的问题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/06/%E7%BC%96%E7%A8%8B%E9%A2%98/">编程题</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/17/webpack/">webpack</a>
+          </li>
+        
+          <li>
+            <a href="/2021/09/07/vue-observer/">vue-observer</a>
+          </li>
+        
+      </ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-content">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </aside>
+
+  
+    
+  <aside class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-content tagcloud">
+      <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/vue/" style="font-size: 10px;">vue</a>
+    </div>
+  </aside>
+
+  
+</div>
+      </div>
+      <footer id="colophon" role="contentinfo">
+    <p>&copy; 2022 John Doe
+    All rights reserved.</p>
+    <p>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></p>
+</footer>
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/share.js'];</script>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/navigation.js"></script>
+
+<div id="bg"></div>
+
+  </div>
+</body>
+</html>
